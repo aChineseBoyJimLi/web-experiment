@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>clock</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body{
+            display: flex;
+            overflow: hidden;
+            justify-content:center;
+            align-items:center;
+            width:100vw;
+            height:100vh;
+        }
+        .main{
+            width:550px;
+            height:550px;
+            position:relative;
+        }
+        canvas{
+            width:550px;
+            height:550px;
+            position:absolute;
+            top:0;
+            left:0;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <canvas id="bg"></canvas>
+        <canvas id="minute"></canvas>
+        <canvas id="second"></canvas>
+        <canvas id="hour"></canvas>
+    </div>
+</body>
+<script>
+    !function(){
+        setInterval(function(){
+            var date = new Date();
+            var h = date.getHours()%12;
+            var m = date.getMinutes();
+            var s = date.getSeconds();
+            Clock(h,m,s);
+        },1000);
+    }();
+
+    function Clock(h,m,s){
+        GetClock();
+        DrawMinute(m);
+        DrawHour(h);
+        DrawSecond(s);
+    }
+
+    function GetClock(){
+        var clock = document.getElementById('bg');
+        var context = clock.getContext('2d');
+        clock.width = clock.parentElement.clientWidth;
+        clock.height = clock.parentElement.clientHeight;
+        var heartX = clock.width / 2;
+        var heartY = clock.height / 2;
+        context.translate(heartX ,heartY);
+
+        /* 钟表的外边框 */
+        context.beginPath();
+        context.arc(0,0,200,0,2*Math.PI,true); //外圈圆
+        context.strokeStyle = '#999999';
+        context.stroke();
+        context.closePath();
+
+        context.beginPath();
+        context.arc(0,0,180,0,2*Math.PI,true); //内圈圆
+        context.strokeStyle = '#cccccc';
+        context.stroke();
+        context.closePath();
+
+        /* 钟表的表心 */
+        context.beginPath();
+        context.arc(0,0,10,0,2*Math.PI,true); //内圈圆
+        context.fillStyle = '#888888';
+        context.fill();
+        context.closePath();    
+
+        /*绘制刻度*/
+        for(var i=0;i<60;i++){
+            context.rotate(Math.PI/30);
+            if(i % 5 == 4){
+                context.beginPath();
+                context.moveTo(0,-170);
+                context.lineTo(0,-180);
+                context.strokeStyle = '#999999';
+                context.lineWidth = 4;
+                context.stroke();
+                continue;
+            }
+            context.beginPath();
+            context.moveTo(0,-175);
+            context.lineTo(0,-180);
+            context.strokeStyle = '#aaaaaa';
+            context.lineWidth = 2;
+            context.stroke();
+            context.closePath();    
+        }  
+    }
+    
+    function DrawMinute(m){
+        var clock = document.getElementById('minute');
+        var context = clock.getContext('2d');
+        
+        clock.width = clock.parentElement.clientWidth;
+        clock.height = clock.parentElement.clientHeight;
+
+        context.clearRect(0,0,clock.width,clock.height);
+
+        var heartX = clock.width / 2;
+        var heartY = clock.height / 2;
+        context.translate(heartX ,heartY);
+
+        context.rotate( m * Math.PI/30);
+        
+        var minutePointer = 120; //分针长度
+        /* 绘制指针 */
+        context.beginPath();
+        context.moveTo(0,0); //绘制分针
+        context.lineTo(0, -minutePointer);
+        context.lineWidth = 3;
+        context.strokeStyle = '#888888';
+        context.stroke();
+        context.closePath();
+    }
+    
+
+    function DrawSecond(s){
+        var clock = document.getElementById('second');
+        var context = clock.getContext('2d');
+        clock.width = clock.parentElement.clientWidth;
+        clock.height = clock.parentElement.clientHeight;
+
+        context.clearRect(0,0,clock.width,clock.height);
+        var heartX = clock.width / 2;
+        var heartY = clock.height / 2;
+        context.translate(heartX ,heartY);
+        context.rotate(s * Math.PI/30);
+
+
+        context.beginPath();
+
+        var secondPointer = 160; //秒针长度
+        
+        context.moveTo(0,0); //绘制秒针
+        context.lineTo(0,-secondPointer);
+        context.lineWidth = 2;
+        context.strokeStyle = '#888888';
+        context.stroke();
+        context.closePath();
+    }
+
+    function DrawHour(h){
+        var clock = document.getElementById('hour');
+        var context = clock.getContext('2d');
+        clock.width = clock.parentElement.clientWidth;
+        clock.height = clock.parentElement.clientHeight;
+
+        context.clearRect(0,0,clock.width,clock.height);
+        var heartX = clock.width / 2;
+        var heartY = clock.height / 2;
+        context.translate(heartX ,heartY);
+        
+        var hourPointer = 90;    //时针长度
+
+        context.beginPath();
+        context.rotate(h * Math.PI / 30);
+        context.moveTo(0,0);//绘制时针
+        context.lineTo(0, -hourPointer);
+        context.lineWidth = 5;
+        context.strokeStyle = '#888888';
+        context.stroke();
+        context.closePath();
+    }
+</script>
+</html>
+
