@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="style.css"?>
+<article>
+    <title>E-learning 中的个性化技术研究</title>
+    <author>Hao Xingwei</author>
+    <address>(Shangdong University, School of Computer Science and Technology, Jinan, 250100)</address>
+    <abstract lang="en">
+        <header>Abstract:</header>
+        <content>
+            E-learning is now becoming a very important means in modern education, but the existing E-learning systems are short of pernonalization, the 
+            model of teaching is so simple that the procedures of learning are almost the same. How to build a pernonalization learning circumstance,...
+        </content>
+    </abstract>
+    <keywords>
+        <header>Keywords</header>
+        <content>
+            E-learning, Acknowledge, Point, Pernonalized service, Web discovery
+        </content>
+    </keywords>
+    <abstract lang="ch">
+        <header>0.前言</header>
+        <content>
+            E-learning 是指基于网络的、电子化、数字化、多媒体的教学方式。在实际应用中，E-learning 的范畴非常广泛，它不仅包含基于互联网的网络化学习，还包括了基于多媒体
+            资料的数字化学习。随着Internet 的快速发展和普及，以及教育的全球化和由此带来的教育竞争的加剧，基于Web的E-learning 系统已经成为许多大学和教育机构实施现代化远
+            程教育的重要手段。
+        </content>
+    </abstract>
+</article>

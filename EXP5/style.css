@@ -1,0 +1,36 @@
+article{
+    width:1000px;
+}
+title{
+    display: block;
+    text-align: center;
+    font-size:30px;
+    line-height: 100px;
+}
+address{
+    display: block;
+    text-align: center;
+    line-height: 50px;
+}
+author{
+    display: block;
+    text-align: center;
+    line-height: 50px;
+}
+
+abstract, keywords{
+    display: block;
+}
+
+header{
+    display: block;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 80px;
+}
+
+content{
+    display: block;
+    text-align: center;
+}

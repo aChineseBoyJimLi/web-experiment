@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Student</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="/jquery.min.js"></script>
+</head>
+<body>
+    <form>
+        姓名：<input type="text" name="name"><br>
+        年龄：<input type="text" name="age"><br>
+        生日：<input type="text" name="birthday"><br>
+        学号：<input type="text" name="stuId"><br>
+        <button>提交</button>
+    </form>
+    <br><br>
+    <table>
+        <tr>
+            <td>姓名</td>
+            <td>年龄</td>
+            <td>生日</td>
+            <td>学号</td>
+        </tr>
+    </table>
+    
+
+</body>
+<script>
+    $(document).ready(function(){
+
+        getInfo();
+
+        $("button").click(function(){
+            var settings = {
+            "async": true,
+            // "crossDomain": true,
+            "url": "http://localhost:8080/add",
+            "method": "POST",
+            "headers": {
+                "Content-Type": "application/json",
+                "Cache-Control": "no-cache",
+                "Postman-Token": "43325fb5-7b74-4922-95e5-eaf17f5545a3"
+            },
+            "processData": false,
+            "data": "{\n\t\"name\":\"TheShy\",\n\t\"age\":7,\n\t\"birthday\":\"1998-01-11\",\n\t\"stuId\":\"77777777\"\n}"
+            }
+
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+            });
+
+            getInfo();
+        })
+    })
+
+    function getInfo(){
+        var settings = {
+        "async": true,
+        // "crossDomain": true,
+        "url": "http://localhost:8080/get",
+        "method": "GET",
+        "headers": {
+            "Cache-Control": "no-cache",
+            "Postman-Token": "b61811a8-335b-4e54-9486-9166cdff905c"
+        }
+        }
+
+        $.ajax(settings).done(function (response) {
+            $("table").empty();
+            for(var i=0;i<response.length;i++){
+                var str = '<tr><td>'+response[i].name+'</td><td>'+response[i].age+'</td><td>'+response[i].birthday+'</td><td>'+response[i].stuId+'</td></tr>'
+                $("table").append(str);
+            }
+        });
+    }
+</script>
+</html>

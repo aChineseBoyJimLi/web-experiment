@@ -40,7 +40,7 @@
     !function(){
         setInterval(function(){
             var date = new Date();
-            var h = date.getHours()%12;
+            var h = date.getHours() % 12;
             var m = date.getMinutes();
             var s = date.getSeconds();
             Clock(h,m,s);
@@ -171,7 +171,7 @@
         var hourPointer = 90;    //时针长度
 
         context.beginPath();
-        context.rotate(h * Math.PI / 30);
+        context.rotate(h * Math.PI / 6);
         context.moveTo(0,0);//绘制时针
         context.lineTo(0, -hourPointer);
         context.lineWidth = 5;
